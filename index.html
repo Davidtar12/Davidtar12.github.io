@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="David Tarazona — Investigative journalist and AI-native content strategist. ICIJ Paradise Papers. Cuestión Pública. FinTara. Bilingual EN/ES.">
+  <title>David Tarazona</title>
+  <style>
+    :root {
+      --ink:      #0E0E12;
+      --page:     #FAFAF8;
+      --cobalt:   #1E3A78;
+      --tint:     #EBF0FA;
+      --grey:     #5A5A6E;
+      --rule:     #D4D4DF;
+      --serif:    Georgia, 'Times New Roman', serif;
+      --sans:     -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --mono:     'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--page);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(250,250,248,.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-mark {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.01em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: .85rem;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ────────────────────────────── */
+    #hero {
+      padding: 9rem 2rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .hero-dateline {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      color: var(--grey);
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-hed {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.08;
+      color: var(--ink);
+      margin-bottom: 2rem;
+      max-width: 780px;
+    }
+
+    .hero-dek {
+      font-size: 1.1rem;
+      color: var(--grey);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+
+    .byline-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .byline-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .byline-sep { color: var(--rule); }
+
+    .byline-pill {
+      font-family: var(--mono);
+      font-size: .72rem;
+      background: var(--tint);
+      color: var(--cobalt);
+      padding: .25rem .7rem;
+      border-radius: 2px;
+      letter-spacing: .04em;
+    }
+
+    .hero-links {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .link-primary {
+      background: var(--cobalt);
+      color: #fff;
+      padding: .65rem 1.5rem;
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: opacity .15s;
+    }
+    .link-primary:hover { opacity: .85; }
+
+    .link-ghost {
+      color: var(--cobalt);
+      padding: .65rem 0;
+      font-size: .9rem;
+      text-decoration: none;
+      border-bottom: 1px solid var(--cobalt);
+      transition: opacity .15s;
+    }
+    .link-ghost:hover { opacity: .7; }
+
+    /* ── SECTION WRAPPER ─────────────────── */
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4.5rem 2rem;
+    }
+    .wrap + .wrap { border-top: 1px solid var(--rule); }
+
+    .section-slug {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .1em;
+      color: var(--grey);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: .75rem;
+    }
+
+    .section-intro {
+      color: var(--grey);
+      max-width: 540px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    /* ── WORK ITEMS ──────────────────────── */
+    .work-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .work-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0 2.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+    }
+    .work-item:last-child { border-bottom: none; }
+    .work-item:hover .work-title { color: var(--cobalt); }
+
+    .work-meta {
+      padding-top: .2rem;
+    }
+
+    .work-outlet {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .06em;
+      color: var(--cobalt);
+      margin-bottom: .35rem;
+    }
+
+    .work-year {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--grey);
+    }
+
+    .work-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--ink);
+      margin-bottom: .5rem;
+      transition: color .15s;
+    }
+
+    .work-desc {
+      font-size: .9rem;
+      color: var(--grey);
+      line-height: 1.65;
+      max-width: 560px;
+      margin-bottom: .75rem;
+    }
+
+    .work-tags {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--grey);
+      border: 1px solid var(--rule);
+      padding: .15rem .55rem;
+      border-radius: 2px;
+    }
+
+    /* Featured item */
+    .work-item.lead {
+      grid-template-columns: 1fr;
+      background: var(--tint);
+      padding: 2rem;
+      border-radius: 4px;
+      border: none;
+      margin-bottom: 1px;
+    }
+
+    .work-item.lead .work-title {
+      font-size: 1.35rem;
+      margin-top: .5rem;
+    }
+
+    .work-item.lead .work-desc { max-width: 100%; }
+
+    .lead-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .lead-link {
+      font-size: .82rem;
+      color: var(--cobalt);
+      text-decoration: none;
+      border-bottom: 1px solid var(--cobalt);
+      padding-bottom: 1px;
+      transition: opacity .15s;
+    }
+    .lead-link:hover { opacity: .65; }
+
+    /* ── ABOUT ───────────────────────────── */
+    .about-cols {
+      display: grid;
+      grid-template-columns: 1.65fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-body p {
+      color: var(--grey);
+      line-height: 1.75;
+      margin-bottom: 1.1rem;
+      font-size: .975rem;
+    }
+    .about-body p strong { color: var(--ink); }
+
+    .sidebar-stack {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+
+    .cred {
+      padding: 1rem 1.25rem;
+      border-left: 2px solid var(--cobalt);
+      background: var(--tint);
+    }
+
+    .cred-head {
+      font-family: var(--serif);
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: .2rem;
+    }
+
+    .cred-body {
+      font-size: .8rem;
+      color: var(--grey);
+      line-height: 1.4;
+    }
+
+    .tool-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    /* ── CONTACT ─────────────────────────── */
+    #contact { text-align: left; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .contact-item {
+      border-top: 2px solid var(--ink);
+      padding-top: .75rem;
+    }
+
+    .contact-label {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .08em;
+      color: var(--grey);
+      margin-bottom: .35rem;
+    }
+
+    .contact-value {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .15s;
+    }
+
+    a.contact-value:hover { border-color: var(--cobalt); color: var(--cobalt); }
+
+    /* ── FOOTER ──────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--grey);
+      letter-spacing: .04em;
+    }
+
+    /* ── RESPONSIVE ──────────────────────── */
+    @media (max-width: 680px) {
+      .work-item { grid-template-columns: 1fr; gap: .5rem; }
+      .work-meta { display: flex; gap: 1rem; align-items: center; }
+      .about-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-mark">David Tarazona</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-dateline">BOGOTÁ, COLOMBIA — CONTENT STRATEGIST & INVESTIGATIVE JOURNALIST</p>
+  <h1 class="hero-hed">A decade finding the story inside the complexity. Now building the system to make it travel.</h1>
+  <p class="hero-dek">From ICIJ's Paradise Papers to daily financial markets — the work is always the same: find the moment that changes how someone sees the world, then get it in front of them. I do that in English and Spanish, with AI infrastructure I build and operate myself.</p>
+  <div class="byline-row">
+    <span class="byline-name">David Tarazona</span>
+    <span class="byline-sep">—</span>
+    <span class="byline-pill">ICIJ · PARADISE PAPERS</span>
+    <span class="byline-pill">CUESTIÓN PÚBLICA · CO-FOUNDER</span>
+    <span class="byline-pill">TOEFL iBT 108</span>
+  </div>
+  <div class="hero-links">
+    <a href="#work" class="link-primary">Read the work</a>
+    <a href="mailto:davidtarazonapa@gmail.com" class="link-ghost">Get in touch</a>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <p class="section-slug">selected work</p>
+    <h2>The record.</h2>
+    <p class="section-intro">Investigations, content operations, and technical builds — each one a system that outlasts the moment it was made for.</p>
+
+    <div class="work-list">
+
+      <!-- ICIJ — LEAD -->
+      <div class="work-item lead">
+        <div class="work-outlet">Connectas · El Espectador · ICIJ Global Release</div>
+        <h3 class="work-title">Paradise Papers — Colombian Chapter</h3>
+        <p class="work-desc">Selected by Connectas to investigate Colombia's chapter of the ICIJ's global Paradise Papers leak — one of the largest coordinated journalism operations in history, spanning 100+ countries. Uncovered offshore ties between former President Juan Manuel Santos, ex-minister Gabriel Silva Luján, members of the Gaviria family, and Ecopetrol's offshore structure. Published simultaneously with the global release in El Espectador.</p>
+        <div class="work-tags">
+          <span class="tag">Investigation</span>
+          <span class="tag">Offshore Finance</span>
+          <span class="tag">AML/KYC</span>
+          <span class="tag">2017</span>
+        </div>
+        <div class="lead-links">
+          <a href="https://www.elespectador.com/investigacion/gabriel-silva-lujan-el-hombre-global/" target="_blank" rel="noopener" class="lead-link">Gabriel Silva Luján, el hombre global (El Espectador) →</a>
+          <a href="https://www.elespectador.com/investigacion/la-cara-offshore-de-ecopetrol/" target="_blank" rel="noopener" class="lead-link">La cara offshore de Ecopetrol (El Espectador) →</a>
+        </div>
+      </div>
+
+      <!-- FinTara -->
+      <div class="work-item">
+        <div class="work-meta">
+          <div class="work-outlet">FinTara</div>
+          <div class="work-year">2025–present</div>
+        </div>
+        <div>
+          <h3 class="work-title">Bilingual Financial Content Operation — AI-Powered</h3>
+          <p class="work-desc">Daily equity, commodity, and macro analysis in English and Spanish, distributed to communities on Telegram and Discord. The production side runs on a multi-agent pipeline I designed and deployed: Hermes researches and drafts autonomously, OpenClaw handles distribution, with model routing across DeepSeek V4, MiniMax M3, and Claude Sonnet on a Hetzner VPS. Content operation that scales without proportionally scaling the team.</p>
+          <div class="work-tags">
+            <span class="tag">AI Pipeline</span>
+            <span class="tag">EN/ES</span>
+            <span class="tag">Financial Content</span>
+            <span class="tag">Multi-Agent</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cuestión Pública -->
+      <a href="https://www.instagram.com/cuestionp/" target="_blank" rel="noopener" class="work-item" style="align-items:start;">
+        <div class="work-meta">
+          <div class="work-outlet">Cuestión Pública</div>
+          <div class="work-year">2018–2025</div>
+        </div>
+        <div>
+          <h3 class="work-title">Co-Founder — 143K Followers, Award-Winning Investigative Outlet</h3>
+          <p class="work-desc">Co-founded Cuestión Pública from zero. Seven years building editorial strategy, content systems, and a social media community that reached <strong style="color:var(--ink)">143,000 followers on Instagram (@cuestionp)</strong> with 5,200+ posts. The outlet won Colombia's most prestigious journalism awards — Premio CPB, Premio Rey de España, Premio Simón Bolívar, SIP — covering corruption, organized crime, and congressional accountability. Investigated the Odebrecht case, congressional assets (Sabemos lo que hiciste la legislatura pasada), and government officials across administrations.</p>
+          <div class="work-tags">
+            <span class="tag">143K Instagram</span>
+            <span class="tag">Co-Founder</span>
+            <span class="tag">Premio CPB</span>
+            <span class="tag">Premio Rey de España</span>
+            <span class="tag">Premio Simón Bolívar</span>
+            <span class="tag">SIP</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Mongabay -->
+      <a href="https://es.mongabay.com" target="_blank" rel="noopener" class="work-item">
+        <div class="work-meta">
+          <div class="work-outlet">Mongabay Latam</div>
+          <div class="work-year">2022–2024</div>
+        </div>
+        <div>
+          <h3 class="work-title">Contributing Editor — Environmental Investigations</h3>
+          <p class="work-desc">Two years researching, writing, and editing long-form environmental investigations for a global Spanish-language audience — translating complex scientific, regulatory, and legal material into narrative that reaches beyond specialists.</p>
+          <div class="work-tags">
+            <span class="tag">Long-form</span>
+            <span class="tag">Global Audience</span>
+            <span class="tag">Environmental</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- EIB -->
+      <div class="work-item">
+        <div class="work-meta">
+          <div class="work-outlet">La Marea · JournalismFund.eu</div>
+          <div class="work-year">2016–2017</div>
+        </div>
+        <div>
+          <h3 class="work-title">European Investment Bank — Africa Investigation</h3>
+          <p class="work-desc">Grant-funded cross-border investigation into the social and environmental impact of EIB-financed projects in Kenya. Documented the displacement of Maasai communities caused by the Olkaria geothermal plant. Published internationally including La Marea (Spain).</p>
+          <div class="work-tags">
+            <span class="tag">Grant-Funded</span>
+            <span class="tag">Cross-border</span>
+            <span class="tag">Kenya</span>
+            <span class="tag">International</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyrus -->
+      <a href="https://github.com/Davidtar12/keyrus-csv-audit" target="_blank" rel="noopener" class="work-item">
+        <div class="work-meta">
+          <div class="work-outlet">GitHub · Keyrus</div>
+          <div class="work-year">2026</div>
+        </div>
+        <div>
+          <h3 class="work-title">CSV Data Audit App — AI Internship Technical Challenge</h3>
+          <p class="work-desc">Browser-only React/Vite/Tailwind application built as an enterprise AI internship technical challenge. AI-assisted validation logic, error handling, fallback chains, CORS-compliant verification — deployed with no backend. Architecture documented for technical review.</p>
+          <div class="work-tags">
+            <span class="tag">React</span>
+            <span class="tag">Vite</span>
+            <span class="tag">AI-Assisted</span>
+            <span class="tag">Open Source</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <p class="section-slug">about</p>
+    <h2>How I work.</h2>
+    <div class="about-cols">
+      <div class="about-body">
+        <p>The throughline in everything I've done is the same: <strong>take something complex and find the version of it that makes someone stop</strong>. In investigative journalism, that's the lede that makes you read the whole piece. In financial content, it's the one-sentence insight that explains what the Fed just did to someone who doesn't follow the Fed. On TikTok, it's the hook in the first two seconds.</p>
+        <p>The platform changes. The instinct doesn't. What has changed is the production infrastructure around it. I'm <strong>AI-native by necessity</strong> — I run content operations solo that used to require teams, because I've built the systems that make it possible. Multi-agent research-to-publication pipelines. Prompt libraries. Editorial automation that handles distribution so I can focus on what the machine can't do: judgment about what actually matters.</p>
+        <p>I'm <strong>bilingual by origin</strong>, not by translation layer. Spanish-native, C1 English (TOEFL iBT 108). I produce content in both languages from the source — which means it sounds like it was written that way, because it was.</p>
+        <div class="tool-list">
+          <span class="tag">Claude · DeepSeek · GPT</span>
+          <span class="tag">Canva AI</span>
+          <span class="tag">CapCut</span>
+          <span class="tag">Docker</span>
+          <span class="tag">React / Vite</span>
+          <span class="tag">Notion</span>
+          <span class="tag">Google Sheets</span>
+          <span class="tag">Telegram</span>
+          <span class="tag">Discord</span>
+          <span class="tag">LinkedIn</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Hetzner VPS</span>
+        </div>
+      </div>
+      <div class="sidebar-stack">
+        <div class="cred">
+          <div class="cred-head">M.A. Data Journalism</div>
+          <div class="cred-body">Tilburg University, Netherlands<br>Full Merit Scholarship<br>Programme taught in English</div>
+        </div>
+        <div class="cred">
+          <div class="cred-head">B.A. Political Science</div>
+          <div class="cred-body">Universidad de los Andes, Bogotá<br>GPA 4.0 / 5.0</div>
+        </div>
+        <div class="cred">
+          <div class="cred-head">TOEFL iBT 108 / 120</div>
+          <div class="cred-body">C1 English — Verified<br>Spanish: Native</div>
+        </div>
+        <div class="cred">
+          <div class="cred-head">ICIJ — Paradise Papers</div>
+          <div class="cred-body">International Consortium of<br>Investigative Journalists · 2017</div>
+        </div>
+        <div class="cred">
+          <div class="cred-head">I-to-I TEFL · 120H</div>
+          <div class="cred-body">Certified English Language<br>Teaching — Accredited</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <p class="section-slug">contact</p>
+    <h2>Let's work together.</h2>
+    <p class="section-intro">Available for remote content strategy, investigative journalism, AI-powered content operations, and bilingual EN/ES projects.</p>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <p class="contact-label">EMAIL</p>
+        <a href="mailto:davidtarazonapa@gmail.com" class="contact-value">davidtarazonapa@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">PHONE</p>
+        <a href="tel:+573202629079" class="contact-value">+57 320 262 9079</a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">LINKEDIN</p>
+        <a href="https://www.linkedin.com/in/david-tarazona/" target="_blank" rel="noopener" class="contact-value">linkedin.com/in/david-tarazona</a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">GITHUB</p>
+        <a href="https://github.com/Davidtar12" target="_blank" rel="noopener" class="contact-value">github.com/Davidtar12</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>David Tarazona · Bogotá, Colombia · 2026</span>
+  <span>Available for remote work worldwide</span>
+</footer>
+
+</body>
+</html>
